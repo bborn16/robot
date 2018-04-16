@@ -12,15 +12,12 @@ public class AutoForm
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, stringSelection);
         
-        try {          
-            
-            
+        try { 
             Robot robot = new Robot();
             robot.keyPress(KeyEvent.VK_CONTROL);
             robot.keyPress(KeyEvent.VK_V);
             robot.keyRelease(KeyEvent.VK_V);
-            robot.keyRelease(KeyEvent.VK_CONTROL);
-            // robot.delay(50);
+            robot.keyRelease(KeyEvent.VK_CONTROL);            
         } catch (AWTException e) {
             e.printStackTrace();        
         }
@@ -29,50 +26,32 @@ public class AutoForm
     public static void main(String[] args) {         
        try {    
            Robot robot = new Robot();
-            // Creates the delay of 5 sec so that you can open notepad before
-            // Robot start writting
-            robot.delay(5000);
-            int WAITTIME = 50;
-           for (int j = 0; j < 300; ++j) {             
+           // Creates the delay of 5 sec
+           // Robot start writing
+           robot.delay(5000);
+           int WAITTIME = 50;
+           for (int j = 0; j < 3; ++j) {  
+                // 9 tabs to advance through the choices
+                for (int k = 0; k < 9; ++k) {
+                    robot.keyPress(KeyEvent.VK_TAB);
+                    robot.keyRelease(KeyEvent.VK_TAB);
+                    robot.delay(WAITTIME);    
+                }
                 
-                printString("Brandon Born");
-                robot.keyPress(KeyEvent.VK_TAB);
-                robot.keyRelease(KeyEvent.VK_TAB);
-                robot.delay(WAITTIME);
-                printString("Kalamazoo, MI");
-                robot.keyPress(KeyEvent.VK_TAB);
-                robot.keyRelease(KeyEvent.VK_TAB);
-                robot.delay(WAITTIME);
-                printString("brandon.born@vanderbilt.edu");
-                robot.keyPress(KeyEvent.VK_TAB);
-                robot.keyRelease(KeyEvent.VK_TAB);
-                robot.delay(WAITTIME);
-                printString("32");
-                robot.keyPress(KeyEvent.VK_TAB);
-                robot.keyRelease(KeyEvent.VK_TAB);
-                robot.delay(WAITTIME);
-                printString("Personal favorite number");
-                robot.keyPress(KeyEvent.VK_TAB);
-                robot.keyRelease(KeyEvent.VK_TAB);
-                robot.delay(WAITTIME);
+                // Hit enter to go to submit vote
                 robot.keyPress(KeyEvent.VK_ENTER);
                 robot.keyRelease(KeyEvent.VK_ENTER);
                 robot.delay(1000);
                 
-                // Submit again page
-                robot.keyPress(KeyEvent.VK_TAB);
-                robot.keyRelease(KeyEvent.VK_TAB);
-                robot.delay(WAITTIME);
-                robot.keyPress(KeyEvent.VK_ENTER);
-                robot.keyRelease(KeyEvent.VK_ENTER);
+                // Use alt + left arrow to go back
+                robot.keyPress(KeyEvent.VK_ALT);
+                robot.keyPress(KeyEvent.VK_LEFT);                
+                robot.keyRelease(KeyEvent.VK_LEFT);
+                robot.keyRelease(KeyEvent.VK_ALT);
                 robot.delay(1000);
-                robot.keyPress(KeyEvent.VK_TAB);
-                robot.keyRelease(KeyEvent.VK_TAB);
-                robot.delay(WAITTIME);
             }
         } catch (AWTException e) {
-            e.printStackTrace();
-            
+            e.printStackTrace();            
         }
     }
 
